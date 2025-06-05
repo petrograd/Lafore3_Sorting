@@ -35,15 +35,21 @@ class ArrayBub {
 }
 public class BubbleSortApp {
     public static void main(String[] args) {
-        int maxSize = 100;
+        int maxSize = 100000;
         ArrayBub arr;
         arr = new ArrayBub(maxSize);
-        for (int i = 0; i < 20; i++) {
-            arr.insert((int)(Math.random()*100)+1);
+        for (int i = 0; i < maxSize; i++) {
+            //arr.insert((int)(Math.random()*100)+1); //random number
+            arr.insert(i);   //sorted number
         }
-        arr.display();
+//        for (int i = maxSize; i > 0 ; i--) {
+//            arr.insert(i);  //reverse sorted
+//        }
+            long ms = System.currentTimeMillis();
+     //   arr.display();
         arr.bubbleSort();
-        arr.display();
+     //   arr.display();
+        System.out.println((System.currentTimeMillis() - ms)/1000 + " sek");
 
     }
 }

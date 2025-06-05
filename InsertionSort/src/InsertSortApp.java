@@ -33,14 +33,25 @@ class ArrayIns {
 
 public class InsertSortApp {
     public static void main(String[] args) {
-        int maxSize = 100;
+        int maxSize = 100000;
         ArrayIns arr;
         arr = new ArrayIns(maxSize);
-        for (int i = 0; i < 20; i++) {
-            arr.insert((long) (Math.random()*100));
+        for (int i = 0; i < maxSize; i++) {
+//            arr.insert((long) (Math.random()*100)+1);
+            arr.insert(i);
         }
-        arr.display();
+//        for (int i = maxSize; i > 0 ; i--) {
+//            arr.insert(i);
+//        }
+//        arr.display();
+//        arr.insertionSort();
+//        arr.display();
+
+        long ms = System.currentTimeMillis();
+        //   arr.display();
         arr.insertionSort();
-        arr.display();
+        //   arr.display();
+        System.out.println((System.currentTimeMillis() - ms)/1000 + " sek");
+
     }
 }

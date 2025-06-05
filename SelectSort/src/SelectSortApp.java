@@ -41,15 +41,23 @@ class ArraySel {
 
 public class SelectSortApp {
     public static void main(String[] args) {
-        int maxSize = 100;
+        int maxSize = 100000;
         ArraySel arr;
         arr = new ArraySel(maxSize);
-        for (int i = 0; i < 20; i++) {
-            arr.insert((int)(Math.random()*100)+1);
+        for (int i = 0; i < maxSize; i++) {
+            //arr.insert((int)(Math.random()*100)+1);
+            arr.insert(i);
         }
-        arr.display();
+//        for (int i = maxSize; i > 0 ; i--) {
+//            arr.insert(i);
+//        }
+//        arr.display();
+//        arr.selectSort();
+//        arr.display();
+        long ms = System.currentTimeMillis();
+        //   arr.display();
         arr.selectSort();
-        arr.display();
-
+        //   arr.display();
+        System.out.println((System.currentTimeMillis() - ms)/1000 + " sek");
     }
 }
