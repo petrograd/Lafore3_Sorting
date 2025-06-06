@@ -25,16 +25,18 @@ class SortArray {
     }
     public void biderectBubbleSort() {
         int out;
-        for(out = 0; out <= nElems/2; out++) {
-            for (int i = 0; i < nElems-1-out; i++) {
-                if (arr[i] > arr[i+1]) {
+        int left = 0;
+        int right = nElems-1;
+        while (left < right) {
+            for(int i = 0; i < right; i++)
+               if (arr[i] > arr[i+1])
                     swap(i, i+1);
-                }
-            }
-            for (int i = nElems-1-out; i > out ; i--) {
-                if (arr[i] < arr[i-1])
+            right--;
+
+            for (int i = right; i > left ; i--)
+                if (arr[i-1] > arr[i])
                     swap(i, i-1);
-            }
+            left++;
         }
     }
     public void swap(int a, int b) {
