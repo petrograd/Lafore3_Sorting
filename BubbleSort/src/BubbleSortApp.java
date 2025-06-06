@@ -21,10 +21,12 @@ class ArrayBub {
     }
     public void bubbleSort() {
         int out, in;
-        for(out = nElems-1; out > 1; out--)
-            for(in = 0; in < out; in++)
-                if (a[in] > a[in+1])
-                    swap(in, in+1);
+        for(out = nElems-1; out > 0; out--) {
+            for (in = 0; in < out; in++)
+                if (a[in] > a[in + 1])
+                    swap(in, in + 1);
+
+        }
     }
     private void swap(int one, int two) {
         long temp = a[one];
@@ -39,16 +41,17 @@ public class BubbleSortApp {
         ArrayBub arr;
         arr = new ArrayBub(maxSize);
         for (int i = 0; i < maxSize; i++) {
-            //arr.insert((int)(Math.random()*100)+1); //random number
-            arr.insert(i);   //sorted number
+            long n = (int)( Math.random()*(maxSize-1) ); //random number
+            arr.insert(n);
+      //      arr.insert(i);   //sorted number
         }
 //        for (int i = maxSize; i > 0 ; i--) {
 //            arr.insert(i);  //reverse sorted
 //        }
             long ms = System.currentTimeMillis();
-     //   arr.display();
+    //    arr.display();
         arr.bubbleSort();
-     //   arr.display();
+        arr.display();
         System.out.println((System.currentTimeMillis() - ms)/1000 + " sek");
 
     }
