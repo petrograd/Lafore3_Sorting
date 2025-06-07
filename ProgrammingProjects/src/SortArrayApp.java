@@ -56,6 +56,10 @@ class SortArray {
             arr[in] = temp;
         }
     }
+
+    public void insertionSortWithStatistic() {
+
+    }
     public void insertionSortWithNoDups() {
         int out, in;
         long temp;
