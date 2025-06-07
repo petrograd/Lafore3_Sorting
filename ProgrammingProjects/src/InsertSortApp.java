@@ -44,13 +44,25 @@ class ArrayIns {
             return a[ind];
         return -1;
     }
-    public static ArrayIns noDups(ArrayIns sendA) {
+    public void noDups() {
+        insertionSort();
+
+        int total = nElems;
+        int shiftAmount = 0;
+        long prev = 0;
+        for (int i = 0; i < total; i++) {
+            if (a[i] == prev) {
+                shiftAmount++;
+                nElems--;
+            } else {
+                prev = a[i];
+                a[i-shiftAmount] = a[i];
+            }
+        }
+    }
+    public static ArrayIns noDupsSTATIC(ArrayIns sendA) {
         ArrayIns b;
-
         b = new ArrayIns(sendA.nElems);
-
-        int indB = 0, indSen = 0, cnt = 0;
-
         for (int i = 0; i < sendA.nElems; i++) {
             if (i == 0) {
                 b.insert(sendA.get(i));
@@ -89,7 +101,9 @@ public class InsertSortApp {
         System.out.println((System.currentTimeMillis() - ms)/1000 + " sek");
 
         System.out.println("Median: " + arr.median());
-        ArrayIns arr2 = ArrayIns.noDups(arr);
+        arr.noDups();;
+        arr.display();
+        ArrayIns arr2 = ArrayIns.noDupsSTATIC(arr);
         arr2.display();
 
     }
