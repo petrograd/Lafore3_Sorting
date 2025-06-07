@@ -1,4 +1,5 @@
 //3.4 Programming Project oddevensort()
+//3.6 PP insertionSortWithNoDups()
 
 class SortArray {
     private long[] arr;
@@ -42,6 +43,47 @@ class SortArray {
         }
     }
 
+    public void insertionSort() {
+        int out, in;
+        long temp;
+        for (out = 1; out < nElems; out++) {
+            temp = arr[out];
+            in = out;
+            while (in > 0 && (arr[in - 1] >= temp)) {
+                arr[in] = arr[in - 1];
+                in--;
+            }
+            arr[in] = temp;
+        }
+    }
+    public void insertionSortWithNoDups() {
+        int out, in;
+        long temp;
+        //sorting
+        for (out = 1; out < nElems; out++) {
+            temp = arr[out];
+            in = out;
+            while (in > 0 && (arr[in-1] >= temp)) {
+                if (arr[in-1] == temp) {
+                    temp = -1;
+                }
+                arr[in] = arr[in-1];
+                in--;
+            }
+            arr[in] = temp;
+        }
+        //dups removing
+        int shiftAmount = 0;
+        for (int i = 0; i < nElems; i++) {
+            if (arr[i] == -1)
+                shiftAmount++;
+            else
+                arr[i - shiftAmount] = arr[i];
+        }
+        nElems -= shiftAmount;
+
+    }
+
     public void oddEvenSort() {
         boolean isSorted = false;
         while (!isSorted) {
@@ -75,7 +117,7 @@ class SortArray {
 }
 public class SortArrayApp {
     public static void main(String[] args) {
-        int maxSize = 1000;
+        int maxSize = 100;
         SortArray arr;
         arr = new SortArray(maxSize);
 //        for (int i = 0; i < maxSize; i++) {
@@ -88,7 +130,16 @@ public class SortArrayApp {
         arr.display();
         //arr.bubbleSort();
         //arr.bidirectBubbleSort();
-        arr.oddEvenSort();
+        //arr.oddEvenSort();
+        arr.insertionSortWithNoDups();
+        arr.display();
+        arr = new SortArray(maxSize);
+        for (int i = 0; i < maxSize; i++) {
+            if (i%10 == 0) arr.insert(10);
+            else arr.insert(i);
+        }
+        arr.display();
+        arr.insertionSortWithNoDups(); //
         arr.display();
     }
 }
