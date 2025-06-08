@@ -57,9 +57,29 @@ class SortArray {
         }
     }
 
-    public void insertionSortWithStatistic() {
 
+    //3.5 PP add statistic
+    public void insertionSortWithStatistic() {
+        int out, in;
+        long temp;
+        int comparisons = 0, copying = 0;
+        for(out = 1; out < nElems; out++) {
+            temp = arr[out];
+            copying++;
+
+            in = out;
+            for (; in > 0 && (arr[in-1] >= temp) ; in--) {
+                comparisons++;
+                arr[in] = arr[in-1];
+                copying++;
+            }
+            comparisons++;
+            arr[in] = temp;
+            copying++;
+        }
+        System.out.println("Statistic: Arraysize: " + nElems + ", Copying: " + copying + " Comparing: " + comparisons);
     }
+
     public void insertionSortWithNoDups() {
         int out, in;
         long temp;
@@ -121,29 +141,37 @@ class SortArray {
 }
 public class SortArrayApp {
     public static void main(String[] args) {
-        int maxSize = 100;
+        int maxSize = 10000;
         SortArray arr;
         arr = new SortArray(maxSize);
 //        for (int i = 0; i < maxSize; i++) {
 //            long n = (int) (Math.random() * (maxSize - 1)); //random number
 //            arr.insert(n);
 //        }
-        for (int i = maxSize; i > 0 ; i--) {
-            arr.insert(i);
+        for (int i = 0; i < maxSize ; i++) {
+            if (i == 0)
+                arr.insert(9999);
+            else
+                arr.insert(i);
         }
-        arr.display();
+
+      //  arr.display();
         //arr.bubbleSort();
         //arr.bidirectBubbleSort();
         //arr.oddEvenSort();
-        arr.insertionSortWithNoDups();
-        arr.display();
-        arr = new SortArray(maxSize);
-        for (int i = 0; i < maxSize; i++) {
-            if (i%10 == 0) arr.insert(10);
-            else arr.insert(i);
-        }
-        arr.display();
-        arr.insertionSortWithNoDups(); //
-        arr.display();
+//        arr.insertionSortWithNoDups();
+//        arr.display();
+//        arr = new SortArray(maxSize);
+//        for (int i = 0; i < maxSize; i++) {
+//            if (i%10 == 0) arr.insert(10);
+//            else arr.insert(i);
+//        }
+//        arr.display();
+//        arr.insertionSortWithNoDups(); //
+//        arr.display();
+
+        System.out.println("Check statistics");
+        arr.insertionSortWithStatistic();
+      //  arr.display();
     }
 }
